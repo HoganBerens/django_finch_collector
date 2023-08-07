@@ -1,0 +1,14 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1>Finch Details</h1>
+
+<div>
+  <div>
+    <span>{{ finch.name }}</span>
+    <p>Species: {{ finch.species }}</p>
+    <p>Description: {{ finch.description|linebreaks }}</p>
+    <p>Age: {{ finch.age }}</p>
+  </div>
+</div>
+
+{% endblock %}
