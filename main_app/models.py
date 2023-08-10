@@ -5,11 +5,25 @@ MEALS = (("B", "Breakfast"), ("L", "Lunch"), ("D", "Dinner"))
 
 
 # Create your models here.
+class Hat(models.Model):
+    color = models.CharField(max_length=20)
+    fabric = models.CharField(max_length=50)
+
+
+def __str__(self):
+    return self.name
+
+
+def get_absolute_url(self):
+    return reverse("hats_detail", kwargs={"pk": self.id})
+
+
 class Finch(models.Model):
     name = models.CharField(max_length=100)
     species = models.CharField(max_length=100)
     description = models.CharField(max_length=200)
     age = models.IntegerField()
+    hats = models.ManyToManyField(Hat)
 
     def __str__(self):
         return f"{self.name} ({self.id})"

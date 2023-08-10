@@ -8,10 +8,46 @@
     <p>Species: {{ finch.species }}</p>
     <p>Description: {{ finch.description|linebreaks }}</p>
     <p>Age: {{ finch.age }}</p>
-  </div>
-  <div>
-    <a href="{% url 'finches_update' finch.id%}">Edit</a>
-    <a href="{% url 'finches_delete' finch.id%}">Delete</a>
+    <div>
+      <a href="{% url 'finches_update' finch.id%}">Edit</a>
+      <a href="{% url 'finches_delete' finch.id%}">Delete</a>
+    </div>
+    <br />
+
+    <h3>{{ finch.name }}'s Hats</h3>
+    {% if finch.hats %} {% for hat in finch.hats.all %}
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title"> A <span>{{ hat.color }}</span> {{ hat.fabric }} hat </span>
+      </div>
+      <div class="card-action">
+        <form action="{% url 'unassoc_hat' finch.id hat.id %}" method="POST">
+          {% csrf_token %}
+          <button type="submit" class="btn">Remove</button>
+        </form>
+      </div>
+    </div>
+    {% endfor %} {% else %}
+    <h5>No Hats</h5>
+    {% endif %}
+    <div class="col s6">
+      <h3>Available Hats</h3>
+      {% if hats %} {% for hat in hats.all %}
+      <div class="card">
+        <div class="card-content">
+          <span class="card-title"> A <span>{{ hat.color }}</span> {{ hat.fabric }} hat</span>
+        </div>
+        <div class="card-action">
+          <form action="{% url 'assoc_hat' finch.id hat.id %}" method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn">Add</button>
+          </form>
+        </div>
+      </div>
+      {% endfor %} {% else %}
+      <h5>{{finch.name}} Already Has All Toys Available</h5>
+      {% endif %}
+    </div>
   </div>
 </div>
 <div class="col s6">
@@ -38,16 +74,5 @@
     </tbody>
   </table>
 </div>
-
-<script>
-  const dateEl = document.getElementById("id_date");
-  // M is Materialize's global variable
-  M.Datepicker.init(dateEl, {
-    format: "yyyy-mm-dd",
-    defaultDate: new Date(),
-    setDefaultDate: true,
-    autoClose: true,
-  });
-</script>
 
 {% endblock %}
