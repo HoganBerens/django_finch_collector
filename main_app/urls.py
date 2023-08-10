@@ -26,4 +26,5 @@ urlpatterns = [
     ),
     path("hats/", views.hats_index, name="hats_index"),
     path("hats/create/", views.HatCreate.as_view(), name="hats_create"),
+    path("accounts/signup/", views.signup, name="signup"),
 ]

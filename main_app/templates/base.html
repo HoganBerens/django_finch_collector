@@ -16,12 +16,19 @@
         <div>
           <a href="{% url 'home' %}" class="left brand-logo">Finch Collector</a>
         </div>
-        <div>
-          <a href="{% url 'about' %}">About</a>
-          <a href="{% url 'finches_create' %}">Add a finch</a>
-          <a href="{% url 'index'  %}">All Finches</a>
-          <a href="{% url 'hats_create' %}">Create a hat</a>
-        </div>
+        <ul class="right">
+          <!-- changes below -->
+          <li><a href="{% url 'about' %}">About</a></li>
+          {% if user.is_authenticated %}
+          <li><a href="{% url 'finches_create' %}">Add a Finch</a></li>
+          <li><a href="{% url 'index' %}">View All Cats</a></li>
+          <li><a href="{% url 'hats_create' %}">Add a hat</a></li>
+          <li><a href="{% url 'logout' %}">Log Out</a></li>
+          {% else %}
+          <li><a href="{% url 'signup' %}">Sign Up</a></li>
+          <li><a href="{% url 'login' %}">Log In</a></li>
+          {% endif %}
+        </ul>
       </div>
     </header>
     <main class="container">{% block content %} {% endblock %}</main>
