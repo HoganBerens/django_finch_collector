@@ -24,7 +24,7 @@ urlpatterns = [
         views.unassoc_hat,
         name="unassoc_hat",
     ),
-    path("hats/", views.hats_index, name="hats_index"),
     path("hats/create/", views.HatCreate.as_view(), name="hats_create"),
+    path("hats/", views.hats_index, name="hats_index"),
     path("accounts/signup/", views.signup, name="signup"),
 ]

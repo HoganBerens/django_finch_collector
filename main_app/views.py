@@ -76,8 +76,7 @@ def hats_index(request):
     return render(request, "hats/index.html", {"hats": hats})
 
 
-@login_required
-class HatCreate(CreateView):
+class HatCreate(LoginRequiredMixin, CreateView):
     model = Hat
     fields = ["color", "fabric"]
     success_url = "/hats"

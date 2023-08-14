@@ -22,7 +22,7 @@
           {% if user.is_authenticated %}
           <li><a href="{% url 'finches_create' %}">Add a Finch</a></li>
           <li><a href="{% url 'index' %}">View All Cats</a></li>
-          <li><a href="{% url 'hats_create' %}">Add a hat</a></li>
+          <li><a href="{% url 'hats_create' %}">Create a hat</a></li>
           <li><a href="{% url 'logout' %}">Log Out</a></li>
           {% else %}
           <li><a href="{% url 'signup' %}">Sign Up</a></li>
